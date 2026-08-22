@@ -96,7 +96,7 @@
             position: relative;
         }
 
-        /* ኸደር (Header Section) */
+        /* ኸደር (Header Section) - ሎጎዎች እና ሜኑ ፍጹም ጎን ለጎን እንዲሆኑ የተደረገበት */
         .header {
             background-color: #ffffff;
             padding: 12px 15px;
@@ -117,30 +117,11 @@
             height: 38px;
         }
 
-        /* የቀኝ በኩል አቀማመጥ፡ ሜኑ አዝራሩ ከጽሑፉ በስተግራ ተቀምጦ ፈጽሞ እንዳይደራረብ የተደረገበት */
+        /* የቀኝ በኩል አቀማመጥ፡ ሎጎ/ጽሑፍ እና የሜኑ አዝራሩ በጭራሽ ሳይደራረቡ ጎን ለጎን እንዲቀመጡ */
         .right-header-group {
             display: flex;
             align-items: center;
-            gap: 15px;
-        }
-
-        .top-menu-btn {
-            background-color: #4b6baf;
-            border: none;
-            border-radius: 4px;
-            padding: 8px 10px;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .top-menu-btn span {
-            display: block;
-            width: 18px;
-            height: 2.5px;
-            background-color: white;
-            border-radius: 1px;
+            gap: 10px;
         }
 
         .evisa-logo-group {
@@ -166,6 +147,26 @@
             color: #2b1c4d;
             font-weight: bold;
             direction: rtl;
+        }
+
+        /* የሃምበርገር ሜኑ አዝራር ከጽሑፉ በስተቀኝ ራሱን ችሎ እንዲቀመጥ (ያለ መደራረብ) */
+        .top-menu-btn {
+            background-color: #4b6baf;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 9px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .top-menu-btn span {
+            display: block;
+            width: 18px;
+            height: 2.5px;
+            background-color: white;
+            border-radius: 1px;
         }
 
         /* የቋንቋ መቀየሪያው ባር (العربية) ከካርዱ አናት ላይ ከቪዛ ኢስ አክቲቭ በላይ */
@@ -406,17 +407,17 @@
                 </svg>
             </div>
 
-            <!-- የቀኝ ሎጎ እና ጽሑፍ ከሜኑ አዝራሩ ጋር ሳይደራረቡ በንጽህና እንዲቀመጡ የተደረገበት -->
+            <!-- የቀኝ ሎጎ/ጽሑፍ እና የሜኑ አዝራር ሳይደራረቡ ጎን ለጎን በትክክል እንዲቀመጡ -->
             <div class="right-header-group">
+                <div class="evisa-logo-group">
+                    <div class="oman-text">Oman<span>e</span></div>
+                    <div class="arabic-evisa">الـتأشيرة العُمانية</div>
+                </div>
                 <button class="top-menu-btn" id="topMenuToggle" type="button">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-                <div class="evisa-logo-group">
-                    <div class="oman-text">Oman<span>e</span></div>
-                    <div class="arabic-evisa">الـتأشيرة العُمانية</div>
-                </div>
             </div>
         </div>
 
