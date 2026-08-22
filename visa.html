@@ -356,8 +356,9 @@
             document.getElementById('outGender').innerText = gender;
             document.getElementById('outNationality').innerText = nationality;
 
-            // የገጹን ሊንክ ማዘጋጀት
-            const baseURL = window.location.href.split('?')[0];
+            // የገጹን ኦፊሺያል GitHub URL በራስ-ሰር ይይዛል
+            const currentURL = window.location.href.split('?')[0];
+
             const params = new URLSearchParams({
                 visa: visaNum,
                 given: givenName,
@@ -366,22 +367,23 @@
                 nation: nationality
             });
 
-            const targetURL = `${baseURL}?${params.toString()}`;
+            // በብራውዘር የሚከፍተውን ሙሉ ሊንክ ማዘጋጀት
+            const targetURL = `${currentURL}?${params.toString()}`;
 
             document.getElementById('qrcode').innerHTML = "";
 
-            // QR Code ሊንኩን እንዲይዝ ማድረግ
+            // QR Code ኦንላይን ሊንኩን እንዲይዝ ማድረግ
             qrCodeInstance = new QRCode(document.getElementById("qrcode"), {
                 text: targetURL,
-                width: 130,
-                height: 130
+                width: 135,
+                height: 135
             });
 
             visaResult.style.display = 'block';
             visaResult.scrollIntoView({ behavior: 'smooth' });
         });
 
-        // በስካን/በሊንክ ሲከፈት መረጃውን ከURL አንብቦ ማሳየት
+        // በስልክ ስካን ተደርጎ በብራውዘር ሲከፈት መረጃውን ከURL አንብቦ ማሳየት
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('visa')) {
@@ -391,6 +393,7 @@
                 document.getElementById('outGender').innerText = urlParams.get('gender');
                 document.getElementById('outNationality').innerText = urlParams.get('nation');
 
+                // ፎርሙን ደብቆ የቪዛ ማረጋገጫ ገጹን ብቻ ማሳየት
                 document.querySelector('.form-card').style.display = 'none';
                 visaResult.style.display = 'block';
             }
