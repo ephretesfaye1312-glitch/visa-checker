@@ -96,7 +96,7 @@
             position: relative;
         }
 
-        /* ኸደር (Header Section) - ሎጎዎች እና ሜኑ ፍጹም ጎን ለጎን እንዲሆኑ የተደረገበት */
+        /* ኸደር (Header Section) */
         .header {
             background-color: #ffffff;
             padding: 12px 15px;
@@ -106,18 +106,19 @@
             border-bottom: 1px solid #e0e0e0;
         }
 
-        /* የፖሊስ ሎጎ ከላይ በግራ */
+        /* የሮያል ኦማን ፖሊስ ሎጎ ትክክለኛ ምስል ከላይ በግራ */
         .left-logo {
             display: flex;
             align-items: center;
         }
 
-        .police-badge {
-            width: 38px;
-            height: 38px;
+        .police-logo-img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
         }
 
-        /* የቀኝ በኩል አቀማመጥ፡ ሎጎ/ጽሑፍ እና የሜኑ አዝራሩ በጭራሽ ሳይደራረቡ ጎን ለጎን እንዲቀመጡ */
+        /* የቀኝ ሎጎ እና ጽሑፍ ከሜኑ አዝራር ጋር */
         .right-header-group {
             display: flex;
             align-items: center;
@@ -149,7 +150,6 @@
             direction: rtl;
         }
 
-        /* የሃምበርገር ሜኑ አዝራር ከጽሑፉ በስተቀኝ ራሱን ችሎ እንዲቀመጥ (ያለ መደራረብ) */
         .top-menu-btn {
             background-color: #4b6baf;
             border: none;
@@ -398,16 +398,12 @@
     <div class="visa-result-container" id="visaResult">
         <!-- ኸደር (Header) -->
         <div class="header">
-            <!-- የፖሊስ ሎጎ ከላይ በግራ -->
+            <!-- የሮያል ኦማን ፖሊስ ሎጎ ትክክለኛ ምስል ከላኩላቸው የተወሰደ -->
             <div class="left-logo">
-                <svg class="police-badge" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="45" fill="#1b365d" />
-                    <path d="M50 15 L60 35 L82 35 L64 48 L71 70 L50 56 L29 70 L36 48 L18 35 L40 35 Z" fill="#d4af37" />
-                    <circle cx="50" cy="50" r="12" fill="#c0392b" />
-                </svg>
+                <img src="https://i.ibb.co/28mC5W4/rop-logo.png" alt="Royal Oman Police Logo" class="police-logo-img" onerror="this.onerror=null; this.src='https://evisa.rop.gov.om/o/rop-theme/images/rop-logo.png';">
             </div>
 
-            <!-- የቀኝ ሎጎ/ጽሑፍ እና የሜኑ አዝራር ሳይደራረቡ ጎን ለጎን በትክክል እንዲቀመጡ -->
+            <!-- የቀኝ ሎጎ/ጽሑፍ እና የሜኑ አዝራር -->
             <div class="right-header-group">
                 <div class="evisa-logo-group">
                     <div class="oman-text">Oman<span>e</span></div>
