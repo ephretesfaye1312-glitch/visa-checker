@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>የቪዛ መረጃ መመዝገቢያ እና ማረጋገጫ</title>
+    <!-- QR Code Generator Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 1. የፎርም (Form) ስታይል */
+        .form-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 650px;
+            border-radius: 12px;
+            padding: 25px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .form-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #1a252f;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eef0f3;
+            padding-bottom: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .input-group input, .input-group select {
+            padding: 10px 12px;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: #2563eb;
+        }
+
+        .submit-btn {
+            grid-column: span 2;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* 2. የቪዛ ካርድ ስታይል (ከስር የሚወጣው) */
+        .visa-result-container {
+            display: none;
+            width: 100%;
+            max-width: 450px;
+            background: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+            border: 1px solid #e0e0e0;
+        }
+
+        .top-bar {
+            background-color: #3b5998;
+            padding: 8px 15px;
+        }
+
+        .lang-btn {
+            background-color: #e8ecef;
+            color: #2b4170;
+            border: none;
+            padding: 5px 14px;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 2px;
+        }
+
+        .header {
+            background-color: #ffffff;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: flex-end;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .menu-icon {
+            background-color: #3b5998;
+            padding: 6px 8px;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .menu-icon span {
+            display: block;
+            width: 16px;
+            height: 2px;
+            background-color: white;
+        }
+
+        .card-body {
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .status-icon {
+            width: 65px;
+            height: 65px;
+            background-color: #2ecc71;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+        }
+
+        .status-icon::after {
+            content: '';
+            width: 12px;
+            height: 25px;
+            border: solid white;
+            border-width: 0 4px 4px 0;
+            transform: rotate(45deg);
+            margin-bottom: 4px;
+        }
+
+        .status-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .divider {
+            border: 0;
+            height: 1px;
+            background: #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .field-group {
+            margin-bottom: 14px;
+        }
+
+        .field-label {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 3px;
+        }
+
+        .field-value {
+            font-size: 15px;
+            font-weight: bold;
+            color: #000;
+            text-transform: uppercase;
+        }
+
+        .qr-section {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .qr-label {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            background-color: #ffffff;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 13px;
+        }
+
+        .footer-links a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .bottom-bar {
+            background-color: #3b5998;
+            padding: 10px 15px;
+        }
+
+        @media (max-width: 600px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .submit-btn { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. የቪዛ መረጃ መመዝገቢያ ፎርም -->
+    <div class="form-card">
+        <h2 class="form-title">የቪዛ መረጃ መመዝገቢያ ቅጽ</h2>
+        <form id="visaForm" class="form-grid">
+            <div class="input-group">
+                <label>Visa Number</label>
+                <input type="text" id="inVisaNum" value="74516309" required>
+            </div>
+            <div class="input-group">
+                <label>Given Name</label>
+                <input type="text" id="inGivenName" value="SULTAN ANSHA" required>
+            </div>
+            <div class="input-group">
+                <label>Family Name</label>
+                <input type="text" id="inFamName" value="BUTA" required>
+            </div>
+            <div class="input-group">
+                <label>Gender</label>
+                <select id="inGender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Nationality</label>
+                <input type="text" id="inNationality" value="ETHIOPIA" required>
+            </div>
+            <div class="input-group">
+                <label>Passport Number</label>
+                <input type="text" id="inPassportNum" value="EQ1747074" required>
+            </div>
+            <div class="input-group">
+                <label>Passport Expiry Date</label>
+                <input type="text" id="inPassportExp" value="29-08-2030" required>
+            </div>
+            <div class="input-group">
+                <label>Occupation</label>
+                <input type="text" id="inOccupation" value="Public Facilities Cleaner" required>
+            </div>
+
+            <button type="submit" class="submit-btn">መረጃውን መዝግብ እና QR Code ፍጠር</button>
+        </form>
+    </div>
+
+    <!-- 2. መረጃው ሲሞላ የሚወጣው የቪዛ ውጤት ገጽ -->
+    <div class="visa-result-container" id="visaResult">
+        <div class="top-bar"><button class="lang-btn">العربية</button></div>
+        <div class="header"><div class="menu-icon"><span></span><span></span><span></span></div></div>
+
+        <div class="card-body">
+            <div class="status-icon"></div>
+            <h1 class="status-title">Visa is Active</h1>
+            <hr class="divider">
+
+            <div class="field-group">
+                <div class="field-label">Visa Number</div>
+                <div class="field-value" id="outVisaNum"></div>
+            </div>
+            <div class="field-group">
+                <div class="field-label">Given Name</div>
+                <div class="field-value" id="outGivenName"></div>
+            </div>
+            <div class="field-group">
+                <div class="field-label">Family Name</div>
+                <div class="field-value" id="outFamName"></div>
+            </div>
+            <div class="field-group">
+                <div class="field-label">Gender</div>
+                <div class="field-value" id="outGender" style="text-transform: capitalize;"></div>
+            </div>
+            <div class="field-group">
+                <div class="field-label">Nationality</div>
+                <div class="field-value" id="outNationality"></div>
+            </div>
+
+            <!-- QR Code የሚሰራበት ቦታ -->
+            <div class="qr-section">
+                <div class="qr-label">Scan to verify Visa Details</div>
+                <div id="qrcode"></div>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <a href="#">Copyright</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Disclaimer</a>
+            <a href="#">Sitemap</a>
+            <a href="#">Terms and Conditions</a>
+        </div>
+        <div class="bottom-bar"><div class="menu-icon"><span></span><span></span><span></span></div></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('visaForm');
+        const visaResult = document.getElementById('visaResult');
+        let qrCodeInstance = null;
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const visaNum = document.getElementById('inVisaNum').value;
+            const givenName = document.getElementById('inGivenName').value;
+            const famName = document.getElementById('inFamName').value;
+            const gender = document.getElementById('inGender').value;
+            const nationality = document.getElementById('inNationality').value;
+
+            document.getElementById('outVisaNum').innerText = visaNum;
+            document.getElementById('outGivenName').innerText = givenName;
+            document.getElementById('outFamName').innerText = famName;
+            document.getElementById('outGender').innerText = gender;
+            document.getElementById('outNationality').innerText = nationality;
+
+            // የገጹን ሊንክ ማዘጋጀት
+            const baseURL = window.location.href.split('?')[0];
+            const params = new URLSearchParams({
+                visa: visaNum,
+                given: givenName,
+                family: famName,
+                gender: gender,
+                nation: nationality
+            });
+
+            const targetURL = `${baseURL}?${params.toString()}`;
+
+            document.getElementById('qrcode').innerHTML = "";
+
+            // QR Code ሊንኩን እንዲይዝ ማድረግ
+            qrCodeInstance = new QRCode(document.getElementById("qrcode"), {
+                text: targetURL,
+                width: 130,
+                height: 130
+            });
+
+            visaResult.style.display = 'block';
+            visaResult.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // በስካን/በሊንክ ሲከፈት መረጃውን ከURL አንብቦ ማሳየት
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('visa')) {
+                document.getElementById('outVisaNum').innerText = urlParams.get('visa');
+                document.getElementById('outGivenName').innerText = urlParams.get('given');
+                document.getElementById('outFamName').innerText = urlParams.get('family');
+                document.getElementById('outGender').innerText = urlParams.get('gender');
+                document.getElementById('outNationality').innerText = urlParams.get('nation');
+
+                document.querySelector('.form-card').style.display = 'none';
+                visaResult.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
