@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>የቪዛ መረጃ መመዝገቢያ እና ማረጋገጫ</title>
-    <!-- QR Code Generator Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <title>Oman eVisa Header Example</title>
     <style>
         * {
             box-sizing: border-box;
@@ -14,91 +12,10 @@
             font-family: Arial, sans-serif;
         }
 
-        body {
-            background-color: #f0f2f5;
-            color: #333;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* 1. የፎርም (Form) ስታይል */
-        .form-card {
-            background: #ffffff;
-            width: 100%;
-            max-width: 650px;
-            border-radius: 12px;
-            padding: 25px 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            margin-bottom: 30px;
-        }
-
-        .form-title {
-            font-size: 22px;
-            font-weight: bold;
-            color: #1a252f;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #eef0f3;
-            padding-bottom: 10px;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px 20px;
-        }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .input-group label {
-            font-size: 13px;
-            color: #555;
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-
-        .input-group input, .input-group select {
-            padding: 10px 12px;
-            border: 1px solid #cccccc;
-            border-radius: 6px;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .submit-btn {
-            grid-column: span 2;
-            background-color: #4b62cd;
-            color: white;
-            border: none;
-            padding: 14px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        /* 2. የቪዛ ካርድ ስታይል */
-        .visa-result-container {
-            display: none;
-            width: 100%;
-            max-width: 450px;
-            background: #ffffff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
-            border: 1px solid #e0e0e0;
-            position: relative;
-        }
-
+        /* የከላይኛው ሰማያዊ አሞሌ (Top Blue Bar) */
         .top-bar {
             background-color: #4b6baf;
-            padding: 8px 15px;
+            padding: 6px 15px;
             display: flex;
             justify-content: flex-start;
         }
@@ -107,28 +24,96 @@
             background-color: #e8ecef;
             color: #2b4170;
             border: none;
-            padding: 5px 14px;
-            font-size: 13px;
+            padding: 4px 12px;
+            font-size: 12px;
             font-weight: bold;
             border-radius: 2px;
             cursor: pointer;
         }
 
+        /* ኸደር (Header Section) */
         .header {
             background-color: #ffffff;
             padding: 10px 15px;
             display: flex;
-            justify-content: flex-end;
-            border-bottom: 1px solid #ddd;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
             position: relative;
         }
 
-        /* የላይኛው ሜኑ ቁልፍ */
+        /* በግራ በኩል ያለው ሎጎ (Royal Oman Police) */
+        .left-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ከእውነተኛው የROP ኤምብሌም ጋር የሚመሳሰል SVG ሎጎ */
+        .police-badge {
+            width: 32px;
+            height: 32px;
+        }
+
+        .logo-text-left {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .arabic-police {
+            font-size: 13px;
+            color: #2b4170;
+            font-weight: bold;
+            direction: rtl;
+        }
+
+        .english-police {
+            font-size: 8px;
+            color: #4b6baf;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        /* በቀኝ በኩል ያለው ሎጎ (Oman eVisa + Menu) */
+        .right-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .evisa-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            line-height: 1;
+        }
+
+        .oman-text {
+            font-size: 28px;
+            font-weight: 800;
+            color: #2b1c4d; /* ጠቆር ያለ ሐምራዊ/ሰማያዊ ከለር */
+            letter-spacing: -0.5px;
+        }
+
+        .oman-text span {
+            color: #2b1c4d;
+        }
+
+        .arabic-evisa {
+            font-size: 12px;
+            color: #2b1c4d;
+            font-weight: bold;
+            direction: rtl;
+            margin-top: -2px;
+        }
+
+        /* የሜኑ ቁልፍ (Hamburger Button) */
         .top-menu-btn {
             background-color: #4b6baf;
             border: none;
             border-radius: 4px;
-            padding: 6px 8px;
+            padding: 7px 8px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -142,208 +127,39 @@
             background-color: white;
             border-radius: 1px;
         }
-
-        /* ምስል 2፡ የላይኛው ሜኑ Dropdown */
-        .top-menu-dropdown {
-            display: none;
-            background-color: #4b6baf;
-            color: white;
-            padding: 20px;
-            flex-direction: column;
-            gap: 12px;
-            font-size: 15px;
-        }
-
-        .top-menu-dropdown a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .top-menu-dropdown .home-icon {
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-
-        .card-body {
-            padding: 25px 20px;
-            text-align: center;
-        }
-
-        .status-icon {
-            width: 65px;
-            height: 65px;
-            background-color: #2ecc71;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 12px;
-        }
-
-        .status-icon::after {
-            content: '';
-            width: 12px;
-            height: 25px;
-            border: solid white;
-            border-width: 0 4px 4px 0;
-            transform: rotate(45deg);
-            margin-bottom: 4px;
-        }
-
-        .status-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #000;
-        }
-
-        .divider {
-            border: 0;
-            height: 1px;
-            background: #e0e0e0;
-            margin-bottom: 20px;
-        }
-
-        .field-group {
-            margin-bottom: 14px;
-        }
-
-        .field-label {
-            font-size: 13px;
-            color: #666;
-            margin-bottom: 3px;
-        }
-
-        .field-value {
-            font-size: 15px;
-            font-weight: bold;
-            color: #000;
-            text-transform: uppercase;
-        }
-
-        .qr-section {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px dashed #ccc;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .qr-label {
-            font-size: 12px;
-            color: #777;
-            margin-bottom: 10px;
-        }
-
-        /* ምስል 1፡ የታችኛው ፉተር ሊንኮች Dropdown */
-        .footer-links {
-            display: none;
-            background-color: #ffffff;
-            padding: 15px 20px;
-            flex-direction: column;
-            gap: 10px;
-            border-top: 1px solid #e0e0e0;
-            font-size: 14px;
-            text-align: left;
-        }
-
-        .footer-links a {
-            color: #333333;
-            text-decoration: none;
-        }
-
-        .footer-pattern {
-            height: 18px;
-            width: 100%;
-            background-color: #ffffff;
-            background-image: 
-                linear-gradient(135deg, #4b6baf 25%, transparent 25%), 
-                linear-gradient(225deg, #4b6baf 25%, transparent 25%), 
-                linear-gradient(315deg, #4b6baf 25%, transparent 25%), 
-                linear-gradient(45deg, #4b6baf 25%, transparent 25%);
-            background-position: -9px 0, -9px 0, 0 0, 0 0;
-            background-size: 18px 18px;
-            background-repeat: repeat-x;
-            border-bottom: 2px solid #4b6baf;
-        }
-
-        .bottom-bar {
-            background-color: #4b6baf;
-            padding: 10px 15px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-        }
-
-        .bottom-menu-btn {
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 4px;
-            padding: 5px 7px;
-            background: transparent;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-
-        .bottom-menu-btn span {
-            display: block;
-            width: 18px;
-            height: 3px;
-            background-color: #ffffff;
-            border-radius: 1px;
-        }
-
-        @media (max-width: 600px) {
-            .form-grid { grid-template-columns: 1fr; }
-            .submit-btn { grid-column: span 1; }
-        }
     </style>
 </head>
 <body>
 
-    <!-- 1. የቪዛ መረጃ መመዝገቢያ ፎርም -->
-    <div class="form-card">
-        <h2 class="form-title">የቪዛ መረጃ መመዝገቢያ ቅጽ</h2>
-        <form id="visaForm" class="form-grid">
-            <div class="input-group">
-                <label>Visa Number</label>
-                <input type="text" id="inVisaNum" value="74516309" required>
-            </div>
-            <div class="input-group">
-                <label>Given Name</label>
-                <input type="text" id="inGivenName" value="SULTAN ANSHA" required>
-            </div>
-            <div class="input-group">
-                <label>Family Name</label>
-                <input type="text" id="inFamName" value="BUTA" required>
-            </div>
-            <div class="input-group">
-                <label>Gender</label>
-                <select id="inGender">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label>Nationality</label>
-                <input type="text" id="inNationality" value="ETHIOPIA" required>
-            </div>
-
-            <button type="submit" class="submit-btn">መረጃውን መዝግብ እና QR Code ፍጠር</button>
-        </form>
+    <!-- 1. የላይኛው ሰማያዊ አሞሌ -->
+    <div class="top-bar">
+        <button class="lang-btn">العربية</button>
     </div>
 
-    <!-- 2. የቪዛ ውጤት ገጽ -->
-    <div class="visa-result-container" id="visaResult">
-        <div class="top-bar">
-            <button class="lang-btn">العربية</button>
+    <!-- 2. በምስሉ ላይ ያለው ኸደር (Header) -->
+    <div class="header">
+        
+        <!-- በግራ በኩል ያለው የROP ሎጎ -->
+        <div class="left-logo">
+            <svg class="police-badge" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="#1b365d" />
+                <path d="M50 15 L60 35 L82 35 L64 48 L71 70 L50 56 L29 70 L36 48 L18 35 L40 35 Z" fill="#d4af37" />
+                <circle cx="50" cy="50" r="12" fill="#c0392b" />
+            </svg>
+            <div class="logo-text-left">
+                <span class="arabic-police">شرطةعُمان السلطانية</span>
+                <span class="english-police">ROYAL OMAN POLICE</span>
+            </div>
         </div>
 
-        <div class="header">
-            <!-- ከላይ ያለውን ሜኑ መክፈቻ ቁልፍ -->
+        <!-- በቀኝ በኩል ያለው የOman eVisa ሎጎ እና የሜኑ ቁልፍ -->
+        <div class="right-logo-container">
+            <div class="evisa-logo">
+                <div class="oman-text">Oman<span>e</span></div>
+                <div class="arabic-evisa">ከሩኒየ ኦማኒያ</div>
+            </div>
+
+            <!-- የሜኑ ቁልፍ -->
             <button class="top-menu-btn" id="topMenuToggle">
                 <span></span>
                 <span></span>
@@ -351,154 +167,7 @@
             </button>
         </div>
 
-        <!-- ምስል 2፡ ከላይኛው ቁልፍ ሲነካ የሚወጣው ሰማያዊ ሜኑ -->
-        <div class="top-menu-dropdown" id="topMenuDropdown">
-            <a href="#" class="home-icon">🏠</a>
-            <a href="#">Know your Visa Type</a>
-            <a href="#">Track Your Application</a>
-            <a href="#">Share Your Experience</a>
-            <a href="#">Contact Us</a>
-            <a href="#">Frequently Asked Questions</a>
-            <a href="#"><strong>Login</strong></a>
-            <a href="#" style="padding-left: 10px;">Tourist</a>
-            <a href="#" style="padding-left: 10px;">PRO / Sponsor</a>
-        </div>
-
-        <div class="card-body">
-            <div class="status-icon"></div>
-            <h1 class="status-title">Visa is Active</h1>
-            <hr class="divider">
-
-            <div class="field-group">
-                <div class="field-label">Visa Number</div>
-                <div class="field-value" id="outVisaNum"></div>
-            </div>
-            <div class="field-group">
-                <div class="field-label">Given Name</div>
-                <div class="field-value" id="outGivenName"></div>
-            </div>
-            <div class="field-group">
-                <div class="field-label">Family Name</div>
-                <div class="field-value" id="outFamName"></div>
-            </div>
-            <div class="field-group">
-                <div class="field-label">Gender</div>
-                <div class="field-value" id="outGender" style="text-transform: capitalize;"></div>
-            </div>
-            <div class="field-group">
-                <div class="field-label">Nationality</div>
-                <div class="field-value" id="outNationality"></div>
-            </div>
-
-            <div class="qr-section">
-                <div class="qr-label">Scan to verify Visa Details</div>
-                <div id="qrcode"></div>
-            </div>
-        </div>
-
-        <!-- ምስል 1፡ ከታችኛው ቁልፍ ሲነካ የሚወጡት ነጭ የፉተር ሊንኮች -->
-        <div class="footer-links" id="bottomMenuDropdown">
-            <a href="#">Copyright</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Disclaimer</a>
-            <a href="#">Sitemap</a>
-            <a href="#">Terms and Conditions</a>
-        </div>
-
-        <div class="footer-pattern"></div>
-        <div class="bottom-bar">
-            <!-- ከታች ያለውን ሜኑ መክፈቻ ቁልፍ -->
-            <button class="bottom-menu-btn" id="bottomMenuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
     </div>
 
-    <script>
-        const form = document.getElementById('visaForm');
-        const visaResult = document.getElementById('visaResult');
-        let qrCodeInstance = null;
-
-        // 1. የላይኛው ሜኑ Toggle ማድረጊያ
-        const topMenuToggle = document.getElementById('topMenuToggle');
-        const topMenuDropdown = document.getElementById('topMenuDropdown');
-
-        topMenuToggle.addEventListener('click', () => {
-            if (topMenuDropdown.style.display === 'flex') {
-                topMenuDropdown.style.display = 'none';
-            } else {
-                topMenuDropdown.style.display = 'flex';
-            }
-        });
-
-        // 2. የታችኛው ሜኑ Toggle ማድረጊያ
-        const bottomMenuToggle = document.getElementById('bottomMenuToggle');
-        const bottomMenuDropdown = document.getElementById('bottomMenuDropdown');
-
-        bottomMenuToggle.addEventListener('click', () => {
-            if (bottomMenuDropdown.style.display === 'flex') {
-                bottomMenuDropdown.style.display = 'none';
-            } else {
-                bottomMenuDropdown.style.display = 'flex';
-            }
-        });
-
-        // 3. ፎርም Submit ሲደረግ
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const visaNum = document.getElementById('inVisaNum').value;
-            const givenName = document.getElementById('inGivenName').value;
-            const famName = document.getElementById('inFamName').value;
-            const gender = document.getElementById('inGender').value;
-            const nationality = document.getElementById('inNationality').value;
-
-            document.getElementById('outVisaNum').innerText = visaNum;
-            document.getElementById('outGivenName').innerText = givenName;
-            document.getElementById('outFamName').innerText = famName;
-            document.getElementById('outGender').innerText = gender;
-            document.getElementById('outNationality').innerText = nationality;
-
-            const currentURL = window.location.href.split('?')[0];
-
-            const params = new URLSearchParams({
-                visa: visaNum,
-                given: givenName,
-                family: famName,
-                gender: gender,
-                nation: nationality
-            });
-
-            const targetURL = `${currentURL}?${params.toString()}`;
-
-            document.getElementById('qrcode').innerHTML = "";
-
-            qrCodeInstance = new QRCode(document.getElementById("qrcode"), {
-                text: targetURL,
-                width: 135,
-                height: 135
-            });
-
-            visaResult.style.display = 'block';
-            visaResult.scrollIntoView({ behavior: 'smooth' });
-        });
-
-        // 4. በስልኩ QR ስካን ተደርጎ ሲከፈት
-        window.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('visa')) {
-                document.getElementById('outVisaNum').innerText = urlParams.get('visa');
-                document.getElementById('outGivenName').innerText = urlParams.get('given');
-                document.getElementById('outFamName').innerText = urlParams.get('family');
-                document.getElementById('outGender').innerText = urlParams.get('gender');
-                document.getElementById('outNationality').innerText = urlParams.get('nation');
-
-                document.querySelector('.form-card').style.display = 'none';
-                visaResult.style.display = 'block';
-            }
-        });
-    </script>
 </body>
 </html>
