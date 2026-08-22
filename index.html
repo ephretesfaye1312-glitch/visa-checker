@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="am">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,11 +68,6 @@
             border-radius: 6px;
             font-size: 14px;
             outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .input-group input:focus, .input-group select:focus {
-            border-color: #4b62cd;
         }
 
         .submit-btn {
@@ -86,11 +81,6 @@
             border-radius: 8px;
             cursor: pointer;
             margin-top: 10px;
-            transition: background 0.2s;
-        }
-
-        .submit-btn:hover {
-            background-color: #3b4eb3;
         }
 
         /* 2. የቪዛ ካርድ ስታይል */
@@ -103,11 +93,14 @@
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0,0,0,0.12);
             border: 1px solid #e0e0e0;
+            position: relative;
         }
 
         .top-bar {
             background-color: #4b6baf;
             padding: 8px 15px;
+            display: flex;
+            justify-content: flex-start;
         }
 
         .lang-btn {
@@ -118,6 +111,7 @@
             font-size: 13px;
             font-weight: bold;
             border-radius: 2px;
+            cursor: pointer;
         }
 
         .header {
@@ -126,6 +120,49 @@
             display: flex;
             justify-content: flex-end;
             border-bottom: 1px solid #ddd;
+            position: relative;
+        }
+
+        /* የላይኛው ሜኑ ቁልፍ */
+        .top-menu-btn {
+            background-color: #4b6baf;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .top-menu-btn span {
+            display: block;
+            width: 18px;
+            height: 3px;
+            background-color: white;
+            border-radius: 1px;
+        }
+
+        /* ምስል 2፡ የላይኛው ሜኑ Dropdown */
+        .top-menu-dropdown {
+            display: none;
+            background-color: #4b6baf;
+            color: white;
+            padding: 20px;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 15px;
+        }
+
+        .top-menu-dropdown a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .top-menu-dropdown .home-icon {
+            font-size: 18px;
+            margin-bottom: 5px;
         }
 
         .card-body {
@@ -200,27 +237,27 @@
             margin-bottom: 10px;
         }
 
+        /* ምስል 1፡ የታችኛው ፉተር ሊንኮች Dropdown */
         .footer-links {
+            display: none;
             background-color: #ffffff;
-            padding: 15px;
-            display: flex;
+            padding: 15px 20px;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
             border-top: 1px solid #e0e0e0;
-            font-size: 13px;
+            font-size: 14px;
+            text-align: left;
         }
 
         .footer-links a {
-            color: #333;
+            color: #333333;
             text-decoration: none;
         }
 
-        /* 3. በፎቶው መሰረት የተ አስተካከለ ፉተር (Pattern እና Button) */
         .footer-pattern {
             height: 18px;
             width: 100%;
             background-color: #ffffff;
-            /* የኦማን ኦፊሺያል ፖርታል የላይስ ዲዛይን (Geometric Border) */
             background-image: 
                 linear-gradient(135deg, #4b6baf 25%, transparent 25%), 
                 linear-gradient(225deg, #4b6baf 25%, transparent 25%), 
@@ -240,7 +277,7 @@
             justify-content: flex-start;
         }
 
-        .nav-toggle-btn {
+        .bottom-menu-btn {
             border: 1px solid rgba(255, 255, 255, 0.8);
             border-radius: 4px;
             padding: 5px 7px;
@@ -251,7 +288,7 @@
             gap: 3px;
         }
 
-        .nav-toggle-btn span {
+        .bottom-menu-btn span {
             display: block;
             width: 18px;
             height: 3px;
@@ -294,19 +331,38 @@
                 <label>Nationality</label>
                 <input type="text" id="inNationality" value="ETHIOPIA" required>
             </div>
-            <div class="input-group">
-                <label>Passport Number</label>
-                <input type="text" id="inPassportNum" value="EQ1747074" required>
-            </div>
 
             <button type="submit" class="submit-btn">መረጃውን መዝግብ እና QR Code ፍጠር</button>
         </form>
     </div>
 
-    <!-- 2. መረጃው ሲሞላ የሚወጣው የቪዛ ውጤት ገጽ -->
+    <!-- 2. የቪዛ ውጤት ገጽ -->
     <div class="visa-result-container" id="visaResult">
-        <div class="top-bar"><button class="lang-btn">العربية</button></div>
-        <div class="header"></div>
+        <div class="top-bar">
+            <button class="lang-btn">العربية</button>
+        </div>
+
+        <div class="header">
+            <!-- ከላይ ያለውን ሜኑ መክፈቻ ቁልፍ -->
+            <button class="top-menu-btn" id="topMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- ምስል 2፡ ከላይኛው ቁልፍ ሲነካ የሚወጣው ሰማያዊ ሜኑ -->
+        <div class="top-menu-dropdown" id="topMenuDropdown">
+            <a href="#" class="home-icon">🏠</a>
+            <a href="#">Know your Visa Type</a>
+            <a href="#">Track Your Application</a>
+            <a href="#">Share Your Experience</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Frequently Asked Questions</a>
+            <a href="#"><strong>Login</strong></a>
+            <a href="#" style="padding-left: 10px;">Tourist</a>
+            <a href="#" style="padding-left: 10px;">PRO / Sponsor</a>
+        </div>
 
         <div class="card-body">
             <div class="status-icon"></div>
@@ -334,14 +390,14 @@
                 <div class="field-value" id="outNationality"></div>
             </div>
 
-            <!-- QR Code የሚሰራበት ቦታ -->
             <div class="qr-section">
                 <div class="qr-label">Scan to verify Visa Details</div>
                 <div id="qrcode"></div>
             </div>
         </div>
 
-        <div class="footer-links">
+        <!-- ምስል 1፡ ከታችኛው ቁልፍ ሲነካ የሚወጡት ነጭ የፉተር ሊንኮች -->
+        <div class="footer-links" id="bottomMenuDropdown">
             <a href="#">Copyright</a>
             <a href="#">Privacy Policy</a>
             <a href="#">Disclaimer</a>
@@ -349,14 +405,14 @@
             <a href="#">Terms and Conditions</a>
         </div>
 
-        <!-- ፉተር (በፎቶው መሰረት የተ አስተካከለ) -->
         <div class="footer-pattern"></div>
         <div class="bottom-bar">
-            <div class="nav-toggle-btn">
+            <!-- ከታች ያለውን ሜኑ መክፈቻ ቁልፍ -->
+            <button class="bottom-menu-btn" id="bottomMenuToggle">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </div>
 
@@ -365,6 +421,31 @@
         const visaResult = document.getElementById('visaResult');
         let qrCodeInstance = null;
 
+        // 1. የላይኛው ሜኑ Toggle ማድረጊያ
+        const topMenuToggle = document.getElementById('topMenuToggle');
+        const topMenuDropdown = document.getElementById('topMenuDropdown');
+
+        topMenuToggle.addEventListener('click', () => {
+            if (topMenuDropdown.style.display === 'flex') {
+                topMenuDropdown.style.display = 'none';
+            } else {
+                topMenuDropdown.style.display = 'flex';
+            }
+        });
+
+        // 2. የታችኛው ሜኑ Toggle ማድረጊያ
+        const bottomMenuToggle = document.getElementById('bottomMenuToggle');
+        const bottomMenuDropdown = document.getElementById('bottomMenuDropdown');
+
+        bottomMenuToggle.addEventListener('click', () => {
+            if (bottomMenuDropdown.style.display === 'flex') {
+                bottomMenuDropdown.style.display = 'none';
+            } else {
+                bottomMenuDropdown.style.display = 'flex';
+            }
+        });
+
+        // 3. ፎርም Submit ሲደረግ
         form.addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -404,7 +485,7 @@
             visaResult.scrollIntoView({ behavior: 'smooth' });
         });
 
-        // በስልክ ስካን ተደርጎ በብራውዘር ሲከፈት
+        // 4. በስልኩ QR ስካን ተደርጎ ሲከፈት
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('visa')) {
