@@ -106,7 +106,7 @@
         }
 
         .top-bar {
-            background-color: #4b62cd;
+            background-color: #4b6baf;
             padding: 8px 15px;
         }
 
@@ -126,29 +126,6 @@
             display: flex;
             justify-content: flex-end;
             border-bottom: 1px solid #ddd;
-        }
-
-        .menu-btn-icon {
-            border: 1px solid white;
-            border-radius: 4px;
-            padding: 6px;
-            width: 38px;
-            height: 38px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 4px;
-            background: transparent;
-            cursor: pointer;
-        }
-
-        .menu-btn-icon span {
-            display: block;
-            width: 20px;
-            height: 3px;
-            background-color: white;
-            border-radius: 2px;
         }
 
         .card-body {
@@ -238,27 +215,53 @@
             text-decoration: none;
         }
 
-        /* 3. በፎቶው መሰረት የተዘጋጀው Footer */
-        .pattern-border {
-            height: 16px;
+        /* 3. በፎቶው መሰረት የተ አስተካከለ ፉተር (Pattern እና Button) */
+        .footer-pattern {
+            height: 18px;
             width: 100%;
-            background-color: #2b3d8f;
-            /* የጌጣጌጥ ፓተርኑን በ CSS መስራት */
+            background-color: #ffffff;
+            /* የኦማን ኦፊሺያል ፖርታል የላይስ ዲዛይን (Geometric Border) */
             background-image: 
-                radial-gradient(circle at 50% 50%, #ffffff 20%, transparent 25%),
-                radial-gradient(circle at 50% 50%, #4b62cd 40%, transparent 45%);
-            background-size: 16px 16px;
-            background-position: 0 0;
-            border-top: 1px solid #7387e3;
-            border-bottom: 1px solid #7387e3;
+                linear-gradient(135deg, #4b6baf 25%, transparent 25%), 
+                linear-gradient(225deg, #4b6baf 25%, transparent 25%), 
+                linear-gradient(315deg, #4b6baf 25%, transparent 25%), 
+                linear-gradient(45deg, #4b6baf 25%, transparent 25%);
+            background-position: -9px 0, -9px 0, 0 0, 0 0;
+            background-size: 18px 18px;
+            background-repeat: repeat-x;
+            border-bottom: 2px solid #4b6baf;
         }
 
         .bottom-bar {
-            background-color: #4b62cd;
-            padding: 12px 15px;
+            background-color: #4b6baf;
+            padding: 10px 15px;
             display: flex;
             align-items: center;
             justify-content: flex-start;
+        }
+
+        .nav-toggle-btn {
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 4px;
+            padding: 5px 7px;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .nav-toggle-btn span {
+            display: block;
+            width: 18px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 1px;
+        }
+
+        @media (max-width: 600px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .submit-btn { grid-column: span 1; }
         }
     </style>
 </head>
@@ -346,10 +349,10 @@
             <a href="#">Terms and Conditions</a>
         </div>
 
-        <!-- በፎቶው መሰረት የተሰራው የከበበ ዲዛይን እና የሜኑ ቁልፍ -->
-        <div class="pattern-border"></div>
+        <!-- ፉተር (በፎቶው መሰረት የተ አስተካከለ) -->
+        <div class="footer-pattern"></div>
         <div class="bottom-bar">
-            <div class="menu-btn-icon">
+            <div class="nav-toggle-btn">
                 <span></span>
                 <span></span>
                 <span></span>
