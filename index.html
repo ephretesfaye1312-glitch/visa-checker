@@ -36,7 +36,7 @@
         }
 
         .form-title {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
             color: #1a252f;
             margin-bottom: 20px;
@@ -399,7 +399,6 @@
     <div class="visa-result-container" id="visaResult">
         <!-- ኸደር (Header) -->
         <div class="header">
-            <!-- የሮያል ኦማን ፖሊስ ኦፊሴላዊ አርማ (የተቀነሰ 폰ት) -->
             <div class="left-logo">
                 <svg class="rop-svg-logo" viewBox="0 0 280 55" xmlns="http://www.w3.org/2000/svg">
                     <g transform="translate(2, 2)">
@@ -411,7 +410,6 @@
                 </svg>
             </div>
 
-            <!-- የቀኝ ሎጎ/ጽሑፍ እና የሜኑ አዝራር -->
             <div class="right-header-group">
                 <div class="evisa-logo-group">
                     <div class="oman-text">Oman<span>e</span></div>
@@ -425,12 +423,10 @@
             </div>
         </div>
 
-        <!-- የቋንቋ መቀየሪያው ባር -->
         <div class="top-bar">
             <button class="lang-btn">العربية</button>
         </div>
 
-        <!-- የላይኛው ሜኑ Dropdown -->
         <div class="top-menu-dropdown" id="topMenuDropdown">
             <a href="#" class="home-icon">🏠</a>
             <a href="#">Know your Visa Type</a>
@@ -487,7 +483,6 @@
             </div>
         </div>
 
-        <!-- የታችኛው ፉተር ሊንኮች Dropdown -->
         <div class="footer-links" id="bottomMenuDropdown">
             <a href="#">Copyright</a>
             <a href="#">Privacy Policy</a>
@@ -571,6 +566,7 @@
                 height: 110
             });
 
+            document.querySelector('.form-card').style.display = 'none';
             visaResult.style.display = 'block';
             visaResult.scrollIntoView({ behavior: 'smooth' });
         });
