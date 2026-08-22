@@ -17,7 +17,7 @@
         body {
             background-color: #f0f2f5;
             color: #333;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -96,43 +96,44 @@
             position: relative;
         }
 
-        /* ኸደር (Header Section) */
+        /* ኸደር (Header Section) - በስልክ በሰፊው እንዲታይ የተስተካከለ */
         .header {
             background-color: #ffffff;
-            padding: 12px 15px;
+            padding: 10px 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #e0e0e0;
+            gap: 5px;
         }
 
-        /* የሮያል ኦማን ፖሊስ ሎጎ (SVG - የተረጋገጠ እና የማይጠፋ) */
         .left-logo {
             display: flex;
             align-items: center;
+            flex-shrink: 0;
         }
 
         .rop-svg-logo {
-            height: 42px;
+            height: 38px;
             width: auto;
         }
 
-        /* የቀኝ ሎጎ እና ጽሑፍ ከሜኑ አዝራር ጋር */
         .right-header-group {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            flex-shrink: 0;
         }
 
         .evisa-logo-group {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            line-height: 1.1;
+            line-height: 1;
         }
 
         .oman-text {
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 800;
             color: #2b1c4d;
             letter-spacing: -0.5px;
@@ -143,17 +144,18 @@
         }
 
         .arabic-evisa {
-            font-size: 11px;
+            font-size: 10px;
             color: #2b1c4d;
             font-weight: bold;
             direction: rtl;
+            margin-top: 2px;
         }
 
         .top-menu-btn {
             background-color: #4b6baf;
             border: none;
             border-radius: 4px;
-            padding: 8px 9px;
+            padding: 7px 8px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -162,13 +164,13 @@
 
         .top-menu-btn span {
             display: block;
-            width: 18px;
-            height: 2.5px;
+            width: 16px;
+            height: 2px;
             background-color: white;
             border-radius: 1px;
         }
 
-        /* የቋንቋ መቀየሪያው ባር (العربية) ከካርዱ አናት ላይ ከቪዛ ኢስ አክቲቭ በላይ */
+        /* የቋንቋ መቀየሪያው ባር */
         .top-bar {
             background-color: #4b6baf;
             padding: 6px 15px;
@@ -210,35 +212,35 @@
         }
 
         .card-body {
-            padding: 25px 20px;
+            padding: 20px 15px;
             text-align: center;
         }
 
         .status-icon {
-            width: 65px;
-            height: 65px;
+            width: 55px;
+            height: 55px;
             background-color: #2ecc71;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 12px;
+            margin: 0 auto 10px;
         }
 
         .status-icon::after {
             content: '';
-            width: 12px;
-            height: 25px;
+            width: 10px;
+            height: 22px;
             border: solid white;
-            border-width: 0 4px 4px 0;
+            border-width: 0 3px 3px 0;
             transform: rotate(45deg);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .status-title {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             color: #000;
         }
 
@@ -246,30 +248,30 @@
             border: 0;
             height: 1px;
             background: #e0e0e0;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .field-group {
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             text-align: center;
         }
 
         .field-label {
-            font-size: 13px;
+            font-size: 12px;
             color: #666;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
 
         .field-value {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
             color: #000;
             text-transform: uppercase;
         }
 
         .qr-section {
-            margin-top: 20px;
-            padding-top: 15px;
+            margin-top: 15px;
+            padding-top: 12px;
             border-top: 1px dashed #ccc;
             display: flex;
             flex-direction: column;
@@ -279,7 +281,7 @@
         .qr-label {
             font-size: 12px;
             color: #777;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         /* የታችኛው ፉተር ሊንኮች Dropdown */
@@ -397,18 +399,15 @@
     <div class="visa-result-container" id="visaResult">
         <!-- ኸደር (Header) -->
         <div class="header">
-            <!-- የሮያል ኦማን ፖሊስ ኦፊሴላዊ አርማ (በቀጥታ የሚሰራ) -->
+            <!-- የሮያል ኦማን ፖሊስ ኦፊሴላዊ አርማ -->
             <div class="left-logo">
-                <svg class="rop-svg-logo" viewBox="0 0 520 85" xmlns="http://www.w3.org/2000/svg">
-                    <!-- የتاج (Crown) እና የፖሊስ ምልክት በግራ በኩል -->
-                    <g transform="translate(5, 2)">
-                        <path d="M22 2 C25 2 28 5 28 8 C28 11 25 14 22 14 C19 14 16 11 16 8 C16 5 19 2 22 2 Z" fill="#c0392b"/>
-                        <path d="M10 20 C10 15 34 15 34 20 C38 28 35 45 35 55 C35 65 28 72 22 75 C16 72 9 65 9 55 C9 45 6 28 10 20 Z" fill="none" stroke="#2c3e50" stroke-width="2.5"/>
-                        <path d="M15 35 L29 35 M13 45 L31 45" stroke="#2c3e50" stroke-width="2"/>
+                <svg class="rop-svg-logo" viewBox="0 0 320 65" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="translate(2, 2)">
+                        <path d="M15 2 C18 2 21 5 21 8 C21 11 18 14 15 14 C12 14 9 11 9 8 C9 5 12 2 15 2 Z" fill="#c0392b"/>
+                        <path d="M7 17 C7 13 23 13 23 17 C26 23 24 35 24 43 C24 51 19 57 15 60 C11 57 6 51 6 43 C6 35 4 23 7 17 Z" fill="none" stroke="#2c3e50" stroke-width="2"/>
                     </g>
-                    <!-- የጽሑፍ ክፍል (شرطة عمان السلطانية) -->
-                    <text x="75" y="32" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1a1a1a">شرطة عمان السلطانية</text>
-                    <text x="75" y="65" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1a1a1a" letter-spacing="1.5">ROYAL OMAN POLICE</text>
+                    <text x="50" y="26" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#1a1a1a">شرطة عمان السلطانية</text>
+                    <text x="50" y="50" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1a1a1a" letter-spacing="1">ROYAL OMAN POLICE</text>
                 </svg>
             </div>
 
@@ -426,7 +425,7 @@
             </div>
         </div>
 
-        <!-- የቋንቋ መቀየሪያው ባር (العربية) ከካርዱ አናት ላይ ከቪዛ ኢስ አክቲቭ በላይ -->
+        <!-- የቋንቋ መቀየሪያው ባር -->
         <div class="top-bar">
             <button class="lang-btn">العربية</button>
         </div>
@@ -568,8 +567,8 @@
 
             qrCodeInstance = new QRCode(document.getElementById("qrcode"), {
                 text: targetURL,
-                width: 135,
-                height: 135
+                width: 120,
+                height: 120
             });
 
             visaResult.style.display = 'block';
