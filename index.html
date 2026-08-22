@@ -114,17 +114,17 @@
             cursor: pointer;
         }
 
-        /* ኸደር (Header Section) - ትክክለኛው የኦማን ቪዛ አቀማመጥ */
+        /* ኸደር (Header Section) - በትክክለኛው ቁጥሮች የተስተካከለ አቀማመጥ */
         .header {
             background-color: #ffffff;
-            padding: 12px 15px;
+            padding: 10px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #e0e0e0;
         }
 
-        /* በግራ በኩል ያለው ሎጎ (Royal Oman Police) */
+        /* ቁጥር 1: በግራ በኩል ያለው የፖሊስ ሎጎ */
         .left-logo {
             display: flex;
             align-items: center;
@@ -132,43 +132,26 @@
         }
 
         .police-badge {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
         }
 
-        .english-police {
-            font-size: 6.5px;
-            color: #4b6baf;
-            font-weight: bold;
-            letter-spacing: 0.2px;
-            line-height: 1;
-        }
-
-        /* በመካከከል ያለው የአረብኛ ጽሑፍ */
-        .arabic-police {
-            font-size: 13px;
-            color: #2b4170;
-            font-weight: bold;
-            direction: rtl;
-            text-align: center;
-        }
-
-        /* በቀኝ በኩል ያለው ሎጎ እና ሜኑ አዝራር (Oman eVisa + Menu) */
-        .right-logo-container {
+        /* ቁጥር 3 እና 4: በቀኝ በኩል ያሉት የኦማን ሎጎ እና አረብኛ ጽሑፍ */
+        .right-section {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .evisa-logo {
+        .evisa-logo-group {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            line-height: 1;
+            line-height: 1.1;
         }
 
         .oman-text {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 800;
             color: #2b1c4d;
             letter-spacing: -0.5px;
@@ -178,12 +161,19 @@
             color: #2b1c4d;
         }
 
-        /* የሜኑ ቁልፍ (Hamburger Button) */
+        .arabic-evisa {
+            font-size: 11px;
+            color: #2b1c4d;
+            font-weight: bold;
+            direction: rtl;
+        }
+
+        /* ቁጥር 5: በስተቀኝ ጠርዝ ያለው የሜኑ አዝራር */
         .top-menu-btn {
             background-color: #4b6baf;
             border: none;
             border-radius: 4px;
-            padding: 6px 7px;
+            padding: 7px 8px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -192,8 +182,8 @@
 
         .top-menu-btn span {
             display: block;
-            width: 16px;
-            height: 2.5px;
+            width: 18px;
+            height: 3px;
             background-color: white;
             border-radius: 1px;
         }
@@ -412,23 +402,20 @@
 
         <!-- ኸደር (Header) -->
         <div class="header">
-            <!-- በግራ በኩል የፖሊስ ሎጎ -->
+            <!-- 1. በግራ በኩል ያለው የፖሊስ ሎጎ -->
             <div class="left-logo">
                 <svg class="police-badge" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="45" fill="#1b365d" />
                     <path d="M50 15 L60 35 L82 35 L64 48 L71 70 L50 56 L29 70 L36 48 L18 35 L40 35 Z" fill="#d4af37" />
                     <circle cx="50" cy="50" r="12" fill="#c0392b" />
                 </svg>
-                <span class="english-police">ROYAL OMAN POLICE</span>
             </div>
 
-            <!-- በመካከል የአረብኛ ጽሑፍ -->
-            <div class="arabic-police">شرطة عُمان السلطانية</div>
-
-            <!-- በቀኝ በኩል የኦማን ሎጎ እና ሜኑ አዝራር -->
-            <div class="right-logo-container">
-                <div class="evisa-logo">
+            <!-- 3, 4 እና 5: በቀኝ በኩል ያሉት ሎጎ፣ አረብኛ ጽሑፍ እና ሜኑ አዝራር -->
+            <div class="right-section">
+                <div class="evisa-logo-group">
                     <div class="oman-text">Oman<span>e</span></div>
+                    <div class="arabic-evisa">الـتأشيرة العُمانية</div>
                 </div>
 
                 <button class="top-menu-btn" id="topMenuToggle" type="button">
@@ -496,7 +483,7 @@
             </div>
         </div>
 
-        <!-- የታችኛው ሜኑ Dropdown -->
+        <!-- የታችኛው ፉተር ሊንኮች Dropdown -->
         <div class="footer-links" id="bottomMenuDropdown">
             <a href="#">Copyright</a>
             <a href="#">Privacy Policy</a>
