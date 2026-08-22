@@ -140,7 +140,7 @@
         .logo-text-left {
             display: flex;
             flex-direction: column;
-            line-height: 1.1;
+            line-height: 1.2;
         }
 
         .arabic-police {
@@ -148,6 +148,7 @@
             color: #2b4170;
             font-weight: bold;
             direction: rtl;
+            text-align: right;
         }
 
         .english-police {
@@ -168,7 +169,7 @@
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            line-height: 1;
+            line-height: 1.1;
         }
 
         .oman-text {
@@ -183,11 +184,10 @@
         }
 
         .arabic-evisa {
-            font-size: 12px;
+            font-size: 11px;
             color: #2b1c4d;
             font-weight: bold;
             direction: rtl;
-            margin-top: -2px;
         }
 
         /* የሜኑ ቁልፍ (Hamburger Button) */
@@ -411,7 +411,7 @@
             <button class="lang-btn">العربية</button>
         </div>
 
-        <!-- አዲሱ ትክክለኛ ኸደር -->
+        <!-- ኸደር -->
         <div class="header">
             <div class="left-logo">
                 <svg class="police-badge" viewBox="0 0 100 100">
@@ -431,7 +431,7 @@
                     <div class="arabic-evisa">الـتأشيرة العُمانية</div>
                 </div>
 
-                <button class="top-menu-btn" id="topMenuToggle">
+                <button class="top-menu-btn" id="topMenuToggle" type="button">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -495,7 +495,7 @@
 
         <div class="footer-pattern"></div>
         <div class="bottom-bar">
-            <button class="bottom-menu-btn" id="bottomMenuToggle">
+            <button class="bottom-menu-btn" id="bottomMenuToggle" type="button">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -508,20 +508,33 @@
         const visaResult = document.getElementById('visaResult');
         let qrCodeInstance = null;
 
+        // የላይኛው ሜኑ ስክሪፕት
         const topMenuToggle = document.getElementById('topMenuToggle');
         const topMenuDropdown = document.getElementById('topMenuDropdown');
 
-        topMenuToggle.addEventListener('click', () => {
-            topMenuDropdown.style.display = topMenuDropdown.style.display === 'flex' ? 'none' : 'flex';
+        topMenuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (topMenuDropdown.style.display === 'flex') {
+                topMenuDropdown.style.display = 'none';
+            } else {
+                topMenuDropdown.style.display = 'flex';
+            }
         });
 
+        // የታችኛው ሜኑ ስክሪፕት
         const bottomMenuToggle = document.getElementById('bottomMenuToggle');
         const bottomMenuDropdown = document.getElementById('bottomMenuDropdown');
 
-        bottomMenuToggle.addEventListener('click', () => {
-            bottomMenuDropdown.style.display = bottomMenuDropdown.style.display === 'flex' ? 'none' : 'flex';
+        bottomMenuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (bottomMenuDropdown.style.display === 'flex') {
+                bottomMenuDropdown.style.display = 'none';
+            } else {
+                bottomMenuDropdown.style.display = 'flex';
+            }
         });
 
+        // ፎርም ሲsubmit ይደረግ
         form.addEventListener('submit', function(e) {
             e.preventDefault();
 
