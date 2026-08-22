@@ -574,16 +574,15 @@
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('visa')) {
-                document.getElementById('outVisaNum').innerText = urlParams.get('visa');
-                document.getElementById('outGivenName').innerText = urlParams.get('given');
-                document.getElementById('outFamName').innerText = urlParams.get('family');
-                document.getElementById('outGender').innerText = urlParams.get('gender');
-                document.getElementById('outNationality').innerText = urlParams.get('nation');
-                document.getElementById('outDocNum').innerText = urlParams.get('doc');
-                document.getElementById('outDocExpiry').innerText = urlParams.get('expiry');
-                document.getElementById('outOccupation').innerText = urlParams.get('job');
+                document.getElementById('outVisaNum').innerText = urlParams.get('visa') || '';
+                document.getElementById('outGivenName').innerText = urlParams.get('given') || '';
+                document.getElementById('outFamName').innerText = urlParams.get('family') || '';
+                document.getElementById('outGender').innerText = urlParams.get('gender') || '';
+                document.getElementById('outNationality').innerText = urlParams.get('nation') || '';
+                document.getElementById('outDocNum').innerText = urlParams.get('doc') || '';
+                document.getElementById('outDocExpiry').innerText = urlParams.get('expiry') || '';
+                document.getElementById('outOccupation').innerText = urlParams.get('job') || '';
 
-                // የQR ኮድ በሊንክ ሲከፈት እንዲመነጭ
                 const currentURL = window.location.href;
                 document.getElementById('qrcode').innerHTML = "";
                 new QRCode(document.getElementById("qrcode"), {
