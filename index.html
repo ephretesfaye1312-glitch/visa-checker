@@ -144,25 +144,24 @@
         }
 
         .arabic-police {
-            font-size: 13px;
+            font-size: 11px;
             color: #2b4170;
             font-weight: bold;
             direction: rtl;
-            text-align: right;
         }
 
         .english-police {
-            font-size: 8px;
+            font-size: 7px;
             color: #4b6baf;
             font-weight: bold;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
         /* በቀኝ በኩል ያለው ሎጎ (Oman eVisa + Menu) */
         .right-logo-container {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .evisa-logo {
@@ -274,8 +273,7 @@
 
         .field-group {
             margin-bottom: 14px;
-            text-align: left;
-            padding-left: 10px;
+            text-align: center;
         }
 
         .field-label {
@@ -400,6 +398,18 @@
                 <label>Nationality</label>
                 <input type="text" id="inNationality" value="ETHIOPIA" required>
             </div>
+            <div class="input-group">
+                <label>Travel Document Number</label>
+                <input type="text" id="inDocNum" value="EQ1747074" required>
+            </div>
+            <div class="input-group">
+                <label>Travel Document Expiry Date</label>
+                <input type="text" id="inDocExpiry" value="29-08-2030" required>
+            </div>
+            <div class="input-group">
+                <label>Occupation</label>
+                <input type="text" id="inOccupation" value="Public Facilities Cleaner" required>
+            </div>
 
             <button type="submit" class="submit-btn">መረጃውን መዝግብ እና QR Code ፍጠር</button>
         </form>
@@ -477,6 +487,18 @@
                 <div class="field-label">Nationality</div>
                 <div class="field-value" id="outNationality"></div>
             </div>
+            <div class="field-group">
+                <div class="field-label">Travel Document Number</div>
+                <div class="field-value" id="outDocNum"></div>
+            </div>
+            <div class="field-group">
+                <div class="field-label">Travel Document Expiry Date</div>
+                <div class="field-value" id="outDocExpiry"></div>
+            </div>
+            <div class="field-group">
+                <div class="field-label">Occupation</div>
+                <div class="field-value" id="outOccupation"></div>
+            </div>
 
             <div class="qr-section">
                 <div class="qr-label">Scan to verify Visa Details</div>
@@ -508,33 +530,22 @@
         const visaResult = document.getElementById('visaResult');
         let qrCodeInstance = null;
 
-        // የላይኛው ሜኑ ስክሪፕት
         const topMenuToggle = document.getElementById('topMenuToggle');
         const topMenuDropdown = document.getElementById('topMenuDropdown');
 
         topMenuToggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (topMenuDropdown.style.display === 'flex') {
-                topMenuDropdown.style.display = 'none';
-            } else {
-                topMenuDropdown.style.display = 'flex';
-            }
+            topMenuDropdown.style.display = topMenuDropdown.style.display === 'flex' ? 'none' : 'flex';
         });
 
-        // የታችኛው ሜኑ ስክሪፕት
         const bottomMenuToggle = document.getElementById('bottomMenuToggle');
         const bottomMenuDropdown = document.getElementById('bottomMenuDropdown');
 
         bottomMenuToggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (bottomMenuDropdown.style.display === 'flex') {
-                bottomMenuDropdown.style.display = 'none';
-            } else {
-                bottomMenuDropdown.style.display = 'flex';
-            }
+            bottomMenuDropdown.style.display = bottomMenuDropdown.style.display === 'flex' ? 'none' : 'flex';
         });
 
-        // ፎርም ሲsubmit ይደረግ
         form.addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -543,12 +554,18 @@
             const famName = document.getElementById('inFamName').value;
             const gender = document.getElementById('inGender').value;
             const nationality = document.getElementById('inNationality').value;
+            const docNum = document.getElementById('inDocNum').value;
+            const docExpiry = document.getElementById('inDocExpiry').value;
+            const occupation = document.getElementById('inOccupation').value;
 
             document.getElementById('outVisaNum').innerText = visaNum;
             document.getElementById('outGivenName').innerText = givenName;
             document.getElementById('outFamName').innerText = famName;
             document.getElementById('outGender').innerText = gender;
             document.getElementById('outNationality').innerText = nationality;
+            document.getElementById('outDocNum').innerText = docNum;
+            document.getElementById('outDocExpiry').innerText = docExpiry;
+            document.getElementById('outOccupation').innerText = occupation;
 
             const currentURL = window.location.href.split('?')[0];
 
@@ -557,7 +574,10 @@
                 given: givenName,
                 family: famName,
                 gender: gender,
-                nation: nationality
+                nation: nationality,
+                doc: docNum,
+                expiry: docExpiry,
+                job: occupation
             });
 
             const targetURL = `${currentURL}?${params.toString()}`;
@@ -582,6 +602,9 @@
                 document.getElementById('outFamName').innerText = urlParams.get('family');
                 document.getElementById('outGender').innerText = urlParams.get('gender');
                 document.getElementById('outNationality').innerText = urlParams.get('nation');
+                document.getElementById('outDocNum').innerText = urlParams.get('doc');
+                document.getElementById('outDocExpiry').innerText = urlParams.get('expiry');
+                document.getElementById('outOccupation').innerText = urlParams.get('job');
 
                 document.querySelector('.form-card').style.display = 'none';
                 visaResult.style.display = 'block';
