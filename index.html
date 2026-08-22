@@ -72,12 +72,12 @@
         }
 
         .input-group input:focus, .input-group select:focus {
-            border-color: #2563eb;
+            border-color: #4b62cd;
         }
 
         .submit-btn {
             grid-column: span 2;
-            background-color: #2563eb;
+            background-color: #4b62cd;
             color: white;
             border: none;
             padding: 14px;
@@ -90,10 +90,10 @@
         }
 
         .submit-btn:hover {
-            background-color: #1d4ed8;
+            background-color: #3b4eb3;
         }
 
-        /* 2. የቪዛ ካርድ ስታይል (ከስር የሚወጣው) */
+        /* 2. የቪዛ ካርድ ስታይል */
         .visa-result-container {
             display: none;
             width: 100%;
@@ -106,7 +106,7 @@
         }
 
         .top-bar {
-            background-color: #3b5998;
+            background-color: #4b62cd;
             padding: 8px 15px;
         }
 
@@ -128,20 +128,27 @@
             border-bottom: 1px solid #ddd;
         }
 
-        .menu-icon {
-            background-color: #3b5998;
-            padding: 6px 8px;
+        .menu-btn-icon {
+            border: 1px solid white;
             border-radius: 4px;
+            padding: 6px;
+            width: 38px;
+            height: 38px;
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            background: transparent;
+            cursor: pointer;
         }
 
-        .menu-icon span {
+        .menu-btn-icon span {
             display: block;
-            width: 16px;
-            height: 2px;
+            width: 20px;
+            height: 3px;
             background-color: white;
+            border-radius: 2px;
         }
 
         .card-body {
@@ -231,14 +238,27 @@
             text-decoration: none;
         }
 
-        .bottom-bar {
-            background-color: #3b5998;
-            padding: 10px 15px;
+        /* 3. በፎቶው መሰረት የተዘጋጀው Footer */
+        .pattern-border {
+            height: 16px;
+            width: 100%;
+            background-color: #2b3d8f;
+            /* የጌጣጌጥ ፓተርኑን በ CSS መስራት */
+            background-image: 
+                radial-gradient(circle at 50% 50%, #ffffff 20%, transparent 25%),
+                radial-gradient(circle at 50% 50%, #4b62cd 40%, transparent 45%);
+            background-size: 16px 16px;
+            background-position: 0 0;
+            border-top: 1px solid #7387e3;
+            border-bottom: 1px solid #7387e3;
         }
 
-        @media (max-width: 600px) {
-            .form-grid { grid-template-columns: 1fr; }
-            .submit-btn { grid-column: span 1; }
+        .bottom-bar {
+            background-color: #4b62cd;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
         }
     </style>
 </head>
@@ -275,14 +295,6 @@
                 <label>Passport Number</label>
                 <input type="text" id="inPassportNum" value="EQ1747074" required>
             </div>
-            <div class="input-group">
-                <label>Passport Expiry Date</label>
-                <input type="text" id="inPassportExp" value="29-08-2030" required>
-            </div>
-            <div class="input-group">
-                <label>Occupation</label>
-                <input type="text" id="inOccupation" value="Public Facilities Cleaner" required>
-            </div>
 
             <button type="submit" class="submit-btn">መረጃውን መዝግብ እና QR Code ፍጠር</button>
         </form>
@@ -291,7 +303,7 @@
     <!-- 2. መረጃው ሲሞላ የሚወጣው የቪዛ ውጤት ገጽ -->
     <div class="visa-result-container" id="visaResult">
         <div class="top-bar"><button class="lang-btn">العربية</button></div>
-        <div class="header"><div class="menu-icon"><span></span><span></span><span></span></div></div>
+        <div class="header"></div>
 
         <div class="card-body">
             <div class="status-icon"></div>
@@ -333,7 +345,16 @@
             <a href="#">Sitemap</a>
             <a href="#">Terms and Conditions</a>
         </div>
-        <div class="bottom-bar"><div class="menu-icon"><span></span><span></span><span></span></div></div>
+
+        <!-- በፎቶው መሰረት የተሰራው የከበበ ዲዛይን እና የሜኑ ቁልፍ -->
+        <div class="pattern-border"></div>
+        <div class="bottom-bar">
+            <div class="menu-btn-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -356,7 +377,6 @@
             document.getElementById('outGender').innerText = gender;
             document.getElementById('outNationality').innerText = nationality;
 
-            // የገጹን ኦፊሺያል GitHub URL በራስ-ሰር ይይዛል
             const currentURL = window.location.href.split('?')[0];
 
             const params = new URLSearchParams({
@@ -367,12 +387,10 @@
                 nation: nationality
             });
 
-            // በብራውዘር የሚከፍተውን ሙሉ ሊንክ ማዘጋጀት
             const targetURL = `${currentURL}?${params.toString()}`;
 
             document.getElementById('qrcode').innerHTML = "";
 
-            // QR Code ኦንላይን ሊንኩን እንዲይዝ ማድረግ
             qrCodeInstance = new QRCode(document.getElementById("qrcode"), {
                 text: targetURL,
                 width: 135,
@@ -383,7 +401,7 @@
             visaResult.scrollIntoView({ behavior: 'smooth' });
         });
 
-        // በስልክ ስካን ተደርጎ በብራውዘር ሲከፈት መረጃውን ከURL አንብቦ ማሳየት
+        // በስልክ ስካን ተደርጎ በብራውዘር ሲከፈት
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('visa')) {
@@ -393,7 +411,6 @@
                 document.getElementById('outGender').innerText = urlParams.get('gender');
                 document.getElementById('outNationality').innerText = urlParams.get('nation');
 
-                // ፎርሙን ደብቆ የቪዛ ማረጋገጫ ገጹን ብቻ ማሳየት
                 document.querySelector('.form-card').style.display = 'none';
                 visaResult.style.display = 'block';
             }
