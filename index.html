@@ -583,6 +583,15 @@
                 document.getElementById('outDocExpiry').innerText = urlParams.get('expiry');
                 document.getElementById('outOccupation').innerText = urlParams.get('job');
 
+                // የQR ኮድ በሊንክ ሲከፈት እንዲመነጭ
+                const currentURL = window.location.href;
+                document.getElementById('qrcode').innerHTML = "";
+                new QRCode(document.getElementById("qrcode"), {
+                    text: currentURL,
+                    width: 110,
+                    height: 110
+                });
+
                 document.querySelector('.form-card').style.display = 'none';
                 visaResult.style.display = 'block';
             }
