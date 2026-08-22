@@ -96,9 +96,10 @@
             position: relative;
         }
 
+        /* ቁጥር 2: የቋንቋ መቀየሪያው ባር (العربية) ከኸደሩ በታች በትክክል ተቀምጧል */
         .top-bar {
             background-color: #4b6baf;
-            padding: 6px 15px;
+            padding: 8px 15px;
             display: flex;
             justify-content: flex-start;
         }
@@ -107,36 +108,35 @@
             background-color: #e8ecef;
             color: #2b4170;
             border: none;
-            padding: 4px 12px;
-            font-size: 12px;
+            padding: 4px 14px;
+            font-size: 13px;
             font-weight: bold;
-            border-radius: 2px;
+            border-radius: 3px;
             cursor: pointer;
         }
 
-        /* ኸደር (Header Section) - በትክክለኛው ቁጥሮች የተስተካከለ አቀማመጥ */
+        /* ኸደር (Header Section) */
         .header {
             background-color: #ffffff;
-            padding: 10px 15px;
+            padding: 12px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #e0e0e0;
         }
 
-        /* ቁጥር 1: በግራ በኩል ያለው የፖሊስ ሎጎ */
+        /* ቁጥር 1: የፖሊስ ሎጎ በግራ በኩል */
         .left-logo {
             display: flex;
             align-items: center;
-            gap: 6px;
         }
 
         .police-badge {
-            width: 32px;
-            height: 32px;
+            width: 38px;
+            height: 38px;
         }
 
-        /* ቁጥር 3 እና 4: በቀኝ በኩል ያሉት የኦማን ሎጎ እና አረብኛ ጽሑፍ */
+        /* ቁጥር 3 እና 4: የኦማን ሎጎ፣ አረብኛ ጽሑፍ እና ሜኑ አዝራር በቀኝ በኩል */
         .right-section {
             display: flex;
             align-items: center;
@@ -151,7 +151,7 @@
         }
 
         .oman-text {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 800;
             color: #2b1c4d;
             letter-spacing: -0.5px;
@@ -162,18 +162,18 @@
         }
 
         .arabic-evisa {
-            font-size: 11px;
+            font-size: 12px;
             color: #2b1c4d;
             font-weight: bold;
             direction: rtl;
         }
 
-        /* ቁጥር 5: በስተቀኝ ጠርዝ ያለው የሜኑ አዝራር */
+        /* ቁጥር 5: የሃምበርገር ሜኑ አዝራር በስተቀኝ ጠርዝ */
         .top-menu-btn {
             background-color: #4b6baf;
             border: none;
             border-radius: 4px;
-            padding: 7px 8px;
+            padding: 8px 9px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -396,10 +396,6 @@
 
     <!-- 2. የቪዛ ውጤት ገጽ -->
     <div class="visa-result-container" id="visaResult">
-        <div class="top-bar">
-            <button class="lang-btn">العربية</button>
-        </div>
-
         <!-- ኸደር (Header) -->
         <div class="header">
             <!-- 1. በግራ በኩል ያለው የፖሊስ ሎጎ -->
@@ -424,6 +420,11 @@
                     <span></span>
                 </button>
             </div>
+        </div>
+
+        <!-- ቁጥር 2: የቋንቋ መቀየሪያው ባር ከኸደሩ በታች -->
+        <div class="top-bar">
+            <button class="lang-btn">العربية</button>
         </div>
 
         <!-- የላይኛው ሜኑ Dropdown -->
